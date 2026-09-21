@@ -11,6 +11,7 @@ window.addEventListener("resize", () => {
 const sand = new Sand2Text(canvas, {
     font: "80px Verdana",
     gap: 0,
+    effect: "blink"
 });
 
 sand.setText("Hello");

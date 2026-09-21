@@ -136,7 +136,7 @@ export default class Sand2Text {
     animate() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.particles.forEach(particle => {
-            particle.draw(this.context);
+            particle.draw(this.context,this.effect);
             particle.update(this.mouse);
             if (!this.blockOscillate)
                 particle.oscilate();

@@ -1,3 +1,5 @@
+import { Effects } from "./Effect";
+
 export default class Particle {
     constructor(x, y, targetX, targetY) {
         this.x = x;
@@ -14,12 +16,27 @@ export default class Particle {
         this.targetY = y;
     }
 
-    draw(context) {
+    draw(context,effect) {
     context.fillStyle = 'white';
     context.beginPath();
+    let width;
+    switch (effect) {
+    case Effects.BLINK:
+        width = Math.abs(this.size * Math.cos(this.theta));
+        break;
 
-    const width = Math.abs(this.size * Math.cos(this.theta));
+    case Effects.PULSE:
+        // pulse logic
+        width = Math.abs(this.size * Math.cos(this.theta));
+        break;
 
+    case Effects.WAVE:
+        // wave logic
+        width = Math.abs(this.size * Math.cos(this.theta));
+        break;
+    default:
+        width = this.size;
+}
     context.ellipse(
         this.x,
         this.y,
