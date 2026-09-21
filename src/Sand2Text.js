@@ -14,6 +14,7 @@ export default class Sand2Text {
             y: null,
             radius: 50
         };
+        this.effect = options.effect|| "default";
 
         this.scale = options.scale || 1;
         this.offsetX = options.offsetX || 0;
@@ -26,6 +27,8 @@ export default class Sand2Text {
 
         this.particleSize = options.particleSize || 1;
         this.gap = options.gap || 2;
+
+        this.blockOscillate = true;
 
         this.resizeObserver = new ResizeObserver(() => {
             this.resize();
@@ -44,6 +47,13 @@ export default class Sand2Text {
         this.draw();
         this.animate();
 
+    }
+
+    //this let partciles to reset the theta,positions to sync when new particles added
+    sync(){
+        this.particles.forEach((particle)=>{
+            particle.reset();
+        })
     }
 
     spread() {
@@ -68,6 +78,7 @@ export default class Sand2Text {
 
 
     updateParticles(textCordinates) {
+        this.blockOscillate = true;
         let newParticles = [];
         for (let y = 0, y2 = textCordinates.height; y < y2; y += this.gap) {
             for (let x = 0, x2 = textCordinates.width; x < x2; x += this.gap) {
@@ -100,10 +111,14 @@ export default class Sand2Text {
             }
             this.particles.length = newParticles.length;
         }
+        this.sync();
+
+        this.blockOscillate = false;
 
     }
 
     draw() {
+        this.blockOscillate = true;
         const coordinates = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height)
         this.particles = [];
         for (let y = 0, y2 = coordinates.height; y < y2; y += this.gap) {
@@ -114,6 +129,7 @@ export default class Sand2Text {
             }
 
         }
+        this.blockOscillate = false;
 
     }
 
@@ -122,7 +138,8 @@ export default class Sand2Text {
         this.particles.forEach(particle => {
             particle.draw(this.context);
             particle.update(this.mouse);
-            // particle.oscilate();
+            if (!this.blockOscillate)
+                particle.oscilate();
         })
 
         requestAnimationFrame(() => {
@@ -133,6 +150,7 @@ export default class Sand2Text {
     resize() {
         this.canvas.width = this.canvas.clientWidth;
         this.canvas.height = this.canvas.clientHeight;
+
         this.setText(this.text); // this will update the particles
     }
 }

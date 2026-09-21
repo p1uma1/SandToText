@@ -6,7 +6,7 @@ export default class Particle {
         this.density = (Math.random() * 30) + 1;
         this.targetX = targetX;
         this.targetY = targetY;
-        this.theta = x;
+        this.theta = 0;
     }
 
     setTarget(x, y) {
@@ -15,12 +15,23 @@ export default class Particle {
     }
 
     draw(context) {
-        context.fillStyle = 'white';
-        context.beginPath();
-        context.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        context.closePath();
-        context.fill();
-    }
+    context.fillStyle = 'white';
+    context.beginPath();
+
+    const width = Math.abs(this.size * Math.cos(this.theta));
+
+    context.ellipse(
+        this.x,
+        this.y,
+        width,
+        this.size,
+        0,
+        0,
+        Math.PI * 2
+    );
+
+    context.fill();
+}
 
     update(mouse) {
         if (mouse.x === null || mouse.y === null) {
@@ -51,10 +62,12 @@ export default class Particle {
     }
 
     oscilate(){
-        
-                this.x += Math.cos(this.theta);
-                this.y += Math.sin(this.theta);
-                this.theta += 0.001;
+                
+                this.theta += 0.01;
             
+    }
+
+    reset(){
+        this.theta=0;
     }
 }

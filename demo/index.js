@@ -1,4 +1,4 @@
-import Sand2Text from "sand2text";
+import Sand2Text from "../src/Sand2Text";
 
 const canvas = document.querySelector("#canvas");
 canvas.width = window.innerWidth;
@@ -10,7 +10,7 @@ window.addEventListener("resize", () => {
 })
 const sand = new Sand2Text(canvas, {
     font: "80px Verdana",
-    gap: 3,
+    gap: 0,
 });
 
 sand.setText("Hello");
