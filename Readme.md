@@ -4,8 +4,9 @@ Interactive particle text morphing for HTML Canvas.
 
 ## Install
 
+```bash
 npm install sand2text
-
+```
 ## Usage
 
 ```js
