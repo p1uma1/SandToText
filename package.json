@@ -3,21 +3,26 @@
   "version": "1.0.0",
   "description": "Interactive particle text morphing effect for HTML Canvas",
   "type": "module",
-  "main": "./index.js",
+  "main": "./dist/sand2text.umd.cjs",
+  "module": "./dist/sand2text.es.js",
   "exports": {
-    ".": "./index.js"
+    ".": {
+      "import": "./dist/sand2text.es.js",
+      "require": "./dist/sand2text.umd.cjs"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite demo",
-    "build": "vite build"
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/p1uma1/SandToText.git"
   },
-  "files": [
-    "src"
-  ],
   "keywords": [
     "particles",
     "canvas",
@@ -31,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/p1uma1/SandToText/issues"
   },
-  "homepage": "https://github.com/p1uma1/SandToText#readme"
+  "homepage": "https://github.com/p1uma1/SandToText#readme",
+  "devDependencies": {
+    "vite": "^8.3.0"
+  }
 }

@@ -1,4 +1,4 @@
-import Sand2Text from "../src/index.js";
+import Sand2Text from "sand2text";
 
 const canvas = document.querySelector("#canvas");
 canvas.width = window.innerWidth;
