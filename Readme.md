@@ -13,9 +13,11 @@ import Sand2Text from "sand2text";
 
 const canvas = document.querySelector("#canvas");
 
-const sand = new Sand2Text(canvas, {
+const sand = new Sand2Text(canvas, 
+    { //optional
     font: "80px Verdana",
     gap: 3,
+    effect: "blink"
 });
 
 sand.setText("Hello");
