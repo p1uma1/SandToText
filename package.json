@@ -1,0 +1,35 @@
+{
+  "name": "sand2text",
+  "version": "1.0.0",
+  "description": "Interactive particle text morphing effect for HTML Canvas",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "dev": "vite demo",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p1uma1/SandToText.git"
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "particles",
+    "canvas",
+    "animation",
+    "text",
+    "graphics",
+    "javascript"
+  ],
+  "author": "Nimsara Piumal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/p1uma1/SandToText/issues"
+  },
+  "homepage": "https://github.com/p1uma1/SandToText#readme"
+}
