@@ -11,11 +11,11 @@ window.addEventListener("resize", () => {
 const sand = new Sand2Text(canvas, {
     font: "80px Verdana",
     gap: 0,
-    effect: "blink"
+    // effect: "wave"
 });
 
-sand.setText("Hello");
+sand.setText("SAND TO TEXT");
 
 setTimeout(() => {
-    sand.setText("World");
+    sand.setText("PARTICLE EFFECTS");
 }, 3000)

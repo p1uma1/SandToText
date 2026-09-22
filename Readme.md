@@ -25,3 +25,5 @@ sand.setText("Hello");
 setTimeout(()=>{
     sand2text.setText("World");
 },3000)
+
+![Sand2Text Demo](./assets/demo.gif)

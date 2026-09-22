@@ -1,4 +1,4 @@
-import { Effects } from "./Effect";
+import { blink, Effects, noEffect } from "./Effect";
 
 export default class Particle {
     constructor(x, y, targetX, targetY) {
@@ -16,46 +16,34 @@ export default class Particle {
         this.targetY = y;
     }
 
-    draw(context,effect) {
-    context.fillStyle = 'white';
-    context.beginPath();
-    let width;
-    switch (effect) {
-    case Effects.BLINK:
-        width = Math.abs(this.size * Math.cos(this.theta));
-        break;
+    draw = (context, effect) => {
+        switch (effect) {
+            case Effects.BLINK:
+                noEffect(context,this)
+                break;
 
-    case Effects.PULSE:
-        // pulse logic
-        width = Math.abs(this.size * Math.cos(this.theta));
-        break;
+            case Effects.PULSE:
+                // pulse logic
+                noEffect(context,this)
+                break;
 
-    case Effects.WAVE:
-        // wave logic
-        width = Math.abs(this.size * Math.cos(this.theta));
-        break;
-    default:
-        width = this.size;
-}
-    context.ellipse(
-        this.x,
-        this.y,
-        width,
-        this.size,
-        0,
-        0,
-        Math.PI * 2
-    );
-
-    context.fill();
-}
+            case Effects.WAVE:
+                blink(context, this);
+                // wave logic
+                break;
+            default:
+                noEffect(context,this)
+                // width = this.size;
+                break;
+        }
+    }
 
     update(mouse) {
         if (mouse.x === null || mouse.y === null) {
-    this.x += (this.targetX - this.x) / 10;
-    this.y += (this.targetY - this.y) / 10;
-    return;
-}
+            this.x += (this.targetX - this.x) / 10;
+            this.y += (this.targetY - this.y) / 10;
+            return;
+        }
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
@@ -74,17 +62,17 @@ export default class Particle {
             if (this.y != this.targetY) {
                 this.y += (this.targetY - this.y) / 20
             }
-            
+
         }
     }
 
-    oscilate(){
-                
-                this.theta += 0.01;
-            
+    oscilate() {
+
+        this.theta += 0.01;
+
     }
 
-    reset(){
-        this.theta=0;
+    reset() {
+        this.theta = 0;
     }
 }
