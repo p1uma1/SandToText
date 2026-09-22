@@ -3,8 +3,9 @@
 Interactive particle text morphing for HTML Canvas.
 
 ## Install
-
+```bash
 npm install sand2text
+```
 
 ## Usage
 
@@ -25,5 +26,6 @@ sand.setText("Hello");
 setTimeout(()=>{
     sand2text.setText("World");
 },3000)
+```
 
 ![Sand2Text Demo](./assets/demo.gif)
