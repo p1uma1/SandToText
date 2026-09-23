@@ -9,13 +9,16 @@ window.addEventListener("resize", () => {
 
 })
 const sand = new Sand2Text(canvas, {
-    font: "80px Verdana",
     gap: 0,
-    // effect: "wave"
+    effect: "flicker"
 });
 
-sand.setText("SAND TO TEXT");
+sand.setText("HELLO WORLD");
+
+// setTimeout(() => {
+//     sand.spread();
+// }, 3000)
 
 setTimeout(() => {
-    sand.setText("PARTICLE EFFECTS");
+    sand.setText("WATCH IT MORPH");
 }, 3000)

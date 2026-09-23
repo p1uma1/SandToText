@@ -1,4 +1,4 @@
-import { blink, Effects, noEffect } from "./Effect";
+import { blink, Effects, flicker, noEffect, pulse, wave } from "./Effect";
 
 export default class Particle {
     constructor(x, y, targetX, targetY) {
@@ -19,16 +19,20 @@ export default class Particle {
     draw = (context, effect) => {
         switch (effect) {
             case Effects.BLINK:
-                noEffect(context,this)
+                blink(context,this)
                 break;
 
             case Effects.PULSE:
                 // pulse logic
-                noEffect(context,this)
+                pulse(context,this)
+                break;
+
+            case Effects.FLICKER:
+                flicker(context, this);
                 break;
 
             case Effects.WAVE:
-                blink(context, this);
+                wave(context, this);
                 // wave logic
                 break;
             default:

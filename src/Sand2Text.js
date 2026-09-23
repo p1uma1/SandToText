@@ -1,7 +1,17 @@
 import Particle from "./Particle";
 
 export default class Sand2Text {
+    /**
+ * @typedef {Object} Sand2TextOptions
+ * @property {string} [font="80px Verdana"] - Font used for the text.
+ * @property {number} [gap=3] - Space between sampled particles.
+ * @property {string} [effect="default"] - Particle animation effect.
+ */
 
+    /**
+     * @param {HTMLCanvasElement} canvas
+     * @param {Sand2TextOptions} [options]
+     */
     constructor(canvas, options = {}) {
 
         this.canvas = canvas;
@@ -14,7 +24,7 @@ export default class Sand2Text {
             y: null,
             radius: 50
         };
-        this.effect = options.effect|| "default";
+        this.effect = options.effect || "default";
 
         this.scale = options.scale || 1;
         this.offsetX = options.offsetX || 0;
@@ -50,19 +60,29 @@ export default class Sand2Text {
     }
 
     //this let partciles to reset the theta,positions to sync when new particles added
-    sync(){
-        this.particles.forEach((particle)=>{
+    sync() {
+        this.particles.forEach((particle) => {
             particle.reset();
         })
     }
 
+    /**
+     * Spread the current particles on the canvas.
+     *
+     * @returns {void}
+     */
     spread() {
         for (let i = 0; i < this.particles.length; i++) {
             this.particles[i].setTarget(Math.random() * this.canvas.width, (Math.random() * this.canvas.height));
         }
     }
 
-
+    /**
+    * Transforms the current particle text into a new text.
+    *
+    * @param {string} text - The new text to display.
+    * @returns {void}
+    */
     setText(text) {
         this.text = text;
 
@@ -136,7 +156,7 @@ export default class Sand2Text {
     animate() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.particles.forEach(particle => {
-            particle.draw(this.context,this.effect);
+            particle.draw(this.context, this.effect);
             particle.update(this.mouse);
             if (!this.blockOscillate)
                 particle.oscilate();
