@@ -1,6 +1,6 @@
 {
   "name": "sand2text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive particle text morphing effect for HTML Canvas",
   "type": "module",
   "main": "./dist/sand2text.umd.cjs",
